@@ -22,8 +22,4 @@ class MainFrame {
     }
 }
 
-
-const mainWindow = new MainFrame()
-
-module.exports = { mainWindow }
-
+module.exports = { mainFrame: new MainFrame() }

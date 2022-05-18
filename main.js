@@ -1,8 +1,8 @@
 const { app } = require("electron")
-const { mainWindow } = require("./windows/main")
+const { mainFrame } = require("./windows/main")
 
 app.whenReady().then(() => {
-    mainWindow.initWindow({
+    mainFrame.initWindow({
         onClose: app.quit
     })
 })
