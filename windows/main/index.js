@@ -2,11 +2,11 @@ const { BrowserWindow } = require("electron")
 const path = require('path')
 
 
-class MainWindow {
+class MainFrame {
 
     window = null
 
-    initilize(config) {
+    initWindow(config) {
         
         const { onClose } = config
 
@@ -23,7 +23,7 @@ class MainWindow {
 }
 
 
-const mainWindow = new MainWindow()
+const mainWindow = new MainFrame()
 
 module.exports = { mainWindow }
 

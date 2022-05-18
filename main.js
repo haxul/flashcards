@@ -2,7 +2,7 @@ const { app } = require("electron")
 const { mainWindow } = require("./windows/main")
 
 app.whenReady().then(() => {
-    mainWindow.initilize({
+    mainWindow.initWindow({
         onClose: app.quit
     })
 })
