@@ -1,0 +1,27 @@
+{
+  "name": "flashcards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon --exec electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haxul/flashcards.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haxul/flashcards/issues"
+  },
+  "homepage": "https://github.com/haxul/flashcards#readme",
+  "devDependencies": {
+    "electron": "^18.2.3"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
