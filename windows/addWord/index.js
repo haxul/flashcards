@@ -1,24 +1,20 @@
 const { BrowserWindow } = require("electron")
-const path = require('path')
+const path = require("path")
 
-class MainFrame {
-
+class AddWordFrame {
     window = null
 
-    initWindow(config) {
-
-        const { onClose } = config
-
+    initWindow() {
         this.window = new BrowserWindow({
-            width: 800,
-            height: 600,
+            width: 400,
+            height: 200,
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js')
             }
         })
+
         this.window.loadFile(path.join(__dirname, "index.html"))
-        this.window.on("closed", onClose)
     }
 }
 
-module.exports = { mainFrame: new MainFrame() }
+module.exports = { addWordFrame: new AddWordFrame() }
