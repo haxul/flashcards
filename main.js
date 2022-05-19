@@ -8,13 +8,11 @@ app.whenReady().then(() => {
     mainFrame.initWindow({ onClose: app.quit })
 
     // configure main Menu
-    const menuTemplate = buildMainMenu({
-        addWordFrame,
-        onQuit: app.quit
-    })
+    const menuTemplate = buildMainMenu({ onAddWord: () => addWordFrame.initWindow() })
 
     if (process.env.NODE_ENV !== "prod") {
         menuTemplate.push({
+
             label: "Developer Tools",
             submenu: [
                 {

@@ -1,17 +1,13 @@
 const buildMainMenu = (config) => {
-    const { addWordFrame, onQuit } = config
+    const { onAddWord } = config
     return [
         {
             label: "File",
             submenu: [
                 {
-                    label: "Add item",
-                    click() { addWordFrame.initWindow() }
-                },
-                {
-                    label: "Quit",
-                    accelerator: "Ctrl+Q",
-                    click() { onQuit() }
+                    label: "Add word",
+                    accelerator: "Ctrl+W",
+                    click() { onAddWord() }
                 }
             ]
         }

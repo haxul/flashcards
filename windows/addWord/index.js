@@ -6,8 +6,8 @@ class AddWordFrame {
 
     initWindow() {
         this.window = new BrowserWindow({
-            width: 400,
-            height: 200,
+            width: 600,
+            height: 350,
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js')
             }
