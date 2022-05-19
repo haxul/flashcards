@@ -2,6 +2,7 @@ const { app, Menu } = require("electron")
 const { mainFrame } = require("./windows/main")
 const { addWordFrame } = require("./windows/addWord")
 const { buildMainMenu } = require("./windows/menu")
+const { db } = require("./repository/dbconn")
 
 app.whenReady().then(() => {
     mainFrame.initWindow({ onClose: app.quit })
@@ -11,7 +12,7 @@ app.whenReady().then(() => {
         addWordFrame,
         onQuit: app.quit
     })
-    
+
     if (process.env.NODE_ENV !== "prod") {
         menuTemplate.push({
             label: "Developer Tools",
@@ -32,6 +33,9 @@ app.whenReady().then(() => {
 
     const menu = Menu.buildFromTemplate(menuTemplate)
     Menu.setApplicationMenu(menu)
+
+    // conn database
+    db.connect()
 })
 
 app.on('window-all-closed', () => {
