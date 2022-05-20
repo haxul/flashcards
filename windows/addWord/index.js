@@ -4,10 +4,13 @@ const path = require("path")
 class AddWordFrame {
     window = null
 
-    initWindow() {
+    initWindow(config) {
+        const { top } = config
         this.window = new BrowserWindow({
             width: 600,
             height: 350,
+            parent: top,
+            modal: true,
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js')
             }

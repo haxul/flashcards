@@ -1,5 +1,5 @@
 const buildMainMenu = (config) => {
-    const { onAddWord } = config
+    const { addWordFrame, mainFrame } = config
     return [
         {
             label: "File",
@@ -7,7 +7,7 @@ const buildMainMenu = (config) => {
                 {
                     label: "Add word",
                     accelerator: "Ctrl+W",
-                    click() { onAddWord() }
+                    click() { addWordFrame.initWindow({ top: mainFrame.window }) }
                 }
             ]
         }

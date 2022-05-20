@@ -1,4 +1,4 @@
-const { app, Menu } = require("electron")
+const { app, Menu, BrowserWindow } = require("electron")
 const { mainFrame } = require("./windows/main")
 const { addWordFrame } = require("./windows/addWord")
 const { buildMainMenu } = require("./windows/menu")
@@ -8,7 +8,7 @@ app.whenReady().then(() => {
     mainFrame.initWindow({ onClose: app.quit })
 
     // configure main Menu
-    const menuTemplate = buildMainMenu({ onAddWord: () => addWordFrame.initWindow() })
+    const menuTemplate = buildMainMenu({ addWordFrame, mainFrame})
 
     if (process.env.NODE_ENV !== "prod") {
         menuTemplate.push({
@@ -24,7 +24,7 @@ app.whenReady().then(() => {
                 },
                 {
                     role: "reload"
-                }
+                },
             ]
         })
     }
