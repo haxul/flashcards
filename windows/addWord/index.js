@@ -9,6 +9,8 @@ class AddWordFrame {
         this.window = new BrowserWindow({
             width: 600,
             height: 350,
+            maxWidth: 600,
+            maxHeight: 350,
             parent: top,
             modal: true,
             webPreferences: {

@@ -10,8 +10,11 @@ class MainFrame {
         const { onClose } = config
 
         this.window = new BrowserWindow({
+            maxHeight: 600,
+            maxWidth: 800,
             width: 800,
             height: 600,
+            fullscreenable: false,
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js')
             }
