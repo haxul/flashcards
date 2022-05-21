@@ -5,10 +5,7 @@ class Db {
     connect() {
         this.conn = new sqlite3.Database("database.sqlite", (err) => {
             if (err) throw "cannot access to database"
-            this.conn.run(`
-            drop table addresses;
-            
-            `, (result, err) => { console.log("removed") })
+            console.info("database is connected")
         })
     }
 }
