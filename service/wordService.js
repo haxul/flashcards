@@ -1,7 +1,7 @@
 const { saveWordPersistant, fetchWordsPriorityOrder } = require("../repository/wordRepository")
 
 
-const saveWordHandler = (persistWordFn, event, word) => (event, word) => persistWordFn(word)
+const saveWordHandler = (fn, event, word) => (event, word) => fn(word)
 const saveWordPersistHandler = saveWordHandler(saveWordPersistant)
 
 const startLessonHandler = (frame, event) =>
