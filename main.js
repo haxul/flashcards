@@ -1,18 +1,18 @@
-const { app, Menu, ipcMain } = require("electron")
-const { mainFrame } = require("./windows/main")
-const { addWordFrame } = require("./windows/addWord")
-const { buildMainMenu } = require("./windows/menu")
-const { db } = require("./repository/dbconn")
-const { saveWordPersistHandler, startLessonHandler } = require("./service/wordService")
+const {app, Menu, ipcMain} = require("electron")
+const {mainFrame} = require("./windows/main")
+const {addWordFrame} = require("./windows/addWord")
+const {buildMainMenu} = require("./windows/menu")
+const {db} = require("./repository/dbconn")
+const {saveWordPersistHandler, startLessonHandler} = require("./service/wordService")
 
 
 app.whenReady().then(() => {
-    mainFrame.initWindow({ onClose: app.quit })
+    mainFrame.initWindow({onClose: app.quit})
 
     // configure main Menu
-    const menuConfig = { addWordFrame, mainFrame }
+    const menuConfig = {addWordFrame, mainFrame}
 
-    if (process.env.NODE_ENV !== "prod") menuConfig["devMode"] = true 
+    if (process.env.NODE_ENV === "dev") menuConfig["devMode"] = true
 
     const menuTemplate = buildMainMenu(menuConfig)
 
