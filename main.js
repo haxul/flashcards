@@ -5,30 +5,16 @@ const { buildMainMenu } = require("./windows/menu")
 const { db } = require("./repository/dbconn")
 const { saveWordPersistHandler, startLessonHandler } = require("./service/wordService")
 
+
 app.whenReady().then(() => {
     mainFrame.initWindow({ onClose: app.quit })
 
     // configure main Menu
-    const menuTemplate = buildMainMenu({ addWordFrame, mainFrame })
+    const menuConfig = { addWordFrame, mainFrame }
 
-    if (process.env.NODE_ENV !== "prod") {
-        menuTemplate.push({
+    if (process.env.NODE_ENV !== "prod") menuConfig["devMode"] = true 
 
-            label: "Developer Tools",
-            submenu: [
-                {
-                    label: "Toggle DevTools",
-                    accelerator: "F12",
-                    click(item, focusedWindow) {
-                        focusedWindow.toggleDevTools()
-                    }
-                },
-                {
-                    role: "reload"
-                },
-            ]
-        })
-    }
+    const menuTemplate = buildMainMenu(menuConfig)
 
     const menu = Menu.buildFromTemplate(menuTemplate)
     Menu.setApplicationMenu(menu)

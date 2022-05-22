@@ -1,6 +1,6 @@
 const buildMainMenu = (config) => {
-    const { addWordFrame, mainFrame } = config
-    return [
+    const { addWordFrame, mainFrame, devMode } = config
+    const menuTemplate = [
         {
             label: "File",
             submenu: [
@@ -12,6 +12,26 @@ const buildMainMenu = (config) => {
             ]
         }
     ]
+
+    if (devMode) {
+        menuTemplate.push({
+            label: "Developer Tools",
+            submenu: [
+                {
+                    label: "Toggle DevTools",
+                    accelerator: "F12",
+                    click(item, focusedWindow) {
+                        focusedWindow.toggleDevTools()
+                    }
+                },
+                {
+                    role: "reload"
+                },
+            ]
+        })
+    }
+
+    return menuTemplate
 }
 
 module.exports = { buildMainMenu }
