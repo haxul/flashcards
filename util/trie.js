@@ -1,5 +1,4 @@
-/*
-prefix tree to find words by prefix
+/* to find words by prefix
 
  */
 
@@ -30,10 +29,10 @@ class Trie {
         const node = this._findNodeWithPrefix(prefix)
         if (!node) return []
 
-        return this._collectWordsFromNode(node, prefix)
+        return this._collectWords(node, prefix)
     }
 
-    _collectWordsFromNode(node, cur, arr = []) {
+    _collectWords(node, cur, arr = []) {
         if (!node) return arr
 
         if (Object.keys(node) === 0) return arr
@@ -47,7 +46,7 @@ class Trie {
         for (let letter in node) {
             if (letter === "$") continue
             const nxtNode = node[letter]
-            this._collectWordsFromNode(nxtNode, cur + letter, arr)
+            this._collectWords(nxtNode, cur + letter, arr)
         }
 
         return arr
