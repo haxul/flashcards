@@ -1,7 +1,7 @@
 test_app
 database.sqlite
 # Logs
-
+release-builds
 logs
 *.log
 npm-debug.log*
