@@ -59,9 +59,8 @@ class Trie {
 
         for (let i = 0; i < prefix.length; i++) {
             const ch = prefix[i]
-            if (ch in cur) {
-                cur = cur[ch]
-            } else return null
+            if (ch in cur) cur = cur[ch]
+            else return null
         }
 
         return cur
