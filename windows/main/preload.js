@@ -2,7 +2,8 @@ const {ipcRenderer} = require("electron")
 const {shuffle} = require("../../util/shuffle")
 
 // words for lesson. Downloads earch time after start button click
-let wordsForLesson = []
+let wordsForLesson = [] // TODO переделать на двусвязный список
+
 // handler on start button
 const onStartButton = () => {
     const startContainer = document.querySelector("#start-container")
@@ -12,7 +13,11 @@ const onStartButton = () => {
     ipcRenderer.send("start::lesson")
 }
 
-const teachWord = () => {
+const repeatWord = (english, russian) => wordsForLesson.unshift({english, russian})
+
+const teachWord = (fnObject = {exec: ()=>{}, params: []}) => {
+    fnObject["exec"](...fnObject["params"])
+
     const frontH6 = document.querySelector("#front-side")
     const backH6 = document.querySelector("#back-side")
 
@@ -39,13 +44,16 @@ const onLoaded = () => {
     const repeatButton = document.querySelector("#repeat")
 
     correctButton.addEventListener("click", (e) => teachWord())
-    repeatButton.addEventListener("click", (e) => teachWord())
+
+    repeatButton.addEventListener("click", (e) => teachWord({
+        exec: repeatWord,
+        params: [document.querySelector("#back-side").innerHTML, document.querySelector("#front-side").innerHTML]
+    }))
 
     // events handlers
     ipcRenderer.on("main::page::words::lesson", (event, words) => {
         wordsForLesson = words
         shuffle(wordsForLesson)
-        console.log(wordsForLesson)
         teachWord()
     })
 }
