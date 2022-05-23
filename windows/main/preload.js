@@ -13,9 +13,10 @@ const onStartButton = () => {
     ipcRenderer.send("start::lesson")
 }
 
-const repeatWord = (english, russian) => wordsForLesson.unshift({english, russian})
-
-const teachWord = (fnObject = {exec: ()=>{}, params: []}) => {
+const teachWord = (fnObject = {
+    exec: () => {
+    }, params: []
+}) => {
     fnObject["exec"](...fnObject["params"])
 
     const frontH6 = document.querySelector("#front-side")
@@ -46,7 +47,7 @@ const onLoaded = () => {
     correctButton.addEventListener("click", (e) => teachWord())
 
     repeatButton.addEventListener("click", (e) => teachWord({
-        exec: repeatWord,
+        exec: (english, russian) => wordsForLesson.unshift({english, russian}),
         params: [document.querySelector("#back-side").innerHTML, document.querySelector("#front-side").innerHTML]
     }))
 
