@@ -13,10 +13,7 @@ const onStartButton = () => {
     ipcRenderer.send("start::lesson")
 }
 
-const teachWord = (fnObject = {
-    exec: () => {
-    }, params: []
-}) => {
+const teachWord = (fnObject = {exec: () => {}, params: []}) => {
     fnObject["exec"](...fnObject["params"])
 
     const frontH6 = document.querySelector("#front-side")
