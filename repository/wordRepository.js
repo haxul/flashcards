@@ -23,7 +23,7 @@ const saveWordPersistant = async (word) => {
 }
 
 const fetchWordsPriorityOrder = fn => {
-    db.conn.all("SELECT * FROM word ORDER BY random() LIMIT 3", (err, rows) => {
+    db.conn.all("SELECT * FROM word ORDER BY random() LIMIT 50", (err, rows) => {
         if (err) throw new Error("cannot select words")
         fn(rows)
     })
