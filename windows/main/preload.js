@@ -1,5 +1,4 @@
 const {ipcRenderer} = require("electron")
-const {shuffle} = require("../../util/shuffle")
 const {LinkedList} = require("../../util/list");
 
 // words for lesson. Downloads earch time after start button click
@@ -51,7 +50,6 @@ const onLoaded = () => {
 
     // events handlers
     ipcRenderer.on("main::page::words::lesson", (event, words) => {
-        shuffle(words)
         wordsForLesson.addLastAll(words)
         teachWord()
     })
