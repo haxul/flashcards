@@ -23,11 +23,10 @@ const saveWordPersistant = async (word) => {
 }
 
 const fetchWordsPriorityOrder = fn => {
-    const words = []
-    db.conn.all("SELECT * FROM word ORDER BY priority LIMIT 1000", (err, rows) => {
+    db.conn.all("SELECT * FROM word", (err, rows) => {
         if (err) throw new Error("cannot select words")
-        rows.forEach(row => words.push(row))
-        fn(words)
+        console.log(`fetched ${rows.length} words from the database`)
+        fn(rows)
     })
 }
 
