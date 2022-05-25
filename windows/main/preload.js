@@ -1,8 +1,9 @@
 const {ipcRenderer} = require("electron")
 const {shuffle} = require("../../util/shuffle")
+const {LinkedList} = require("../../util/list");
 
 // words for lesson. Downloads earch time after start button click
-let wordsForLesson = [] // TODO переделать на двусвязный список
+const wordsForLesson = new LinkedList()
 
 // handler on start button
 const onStartButton = () => {
@@ -13,20 +14,20 @@ const onStartButton = () => {
     ipcRenderer.send("start::lesson")
 }
 
-const teachWord = (fnObject = {exec: () => {}, params: []}) => {
-    fnObject["exec"](...fnObject["params"])
+const teachWord = (fnObject = {}) => {
+    if (fnObject.hasOwnProperty("exec")) fnObject["exec"](...fnObject["params"])
 
     const frontH6 = document.querySelector("#front-side")
     const backH6 = document.querySelector("#back-side")
 
-    if (wordsForLesson.length === 0) {
+    if (wordsForLesson.size() === 0) {
         alert("the lesson is done")
         frontH6.innerHTML = "Спасибо"
         backH6.innerHTML = "Thanks"
         return
     }
 
-    const {russian, english} = wordsForLesson.pop()
+    const {russian, english} = wordsForLesson.removeLast()
     frontH6.innerHTML = russian
     backH6.innerHTML = english
 }
@@ -44,14 +45,14 @@ const onLoaded = () => {
     correctButton.addEventListener("click", (e) => teachWord())
 
     repeatButton.addEventListener("click", (e) => teachWord({
-        exec: (english, russian) => wordsForLesson.unshift({english, russian}),
+        exec: (english, russian) => wordsForLesson.addFirst({english, russian}),
         params: [document.querySelector("#back-side").innerHTML, document.querySelector("#front-side").innerHTML]
     }))
 
     // events handlers
     ipcRenderer.on("main::page::words::lesson", (event, words) => {
-        wordsForLesson = words
-        shuffle(wordsForLesson)
+        shuffle(words)
+        wordsForLesson.addLastAll(words)
         teachWord()
     })
 }

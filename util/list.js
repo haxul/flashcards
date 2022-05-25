@@ -15,6 +15,9 @@ class LinkedList {
     _head = new Node()
     _tail = new Node()
 
+    addLastAll(arr) {
+        arr.forEach(el => this.addLast(el))
+    }
 
     addFirst(val) {
         if (this.isEmpty()) {
@@ -22,7 +25,7 @@ class LinkedList {
             this._head = node
             this._tail = node
         } else {
-            this._head.prev = new Node<T>(val, null, this._head);
+            this._head.prev = new Node(val, null, this._head);
             this._head = this._head.prev;
         }
         this._size++;
