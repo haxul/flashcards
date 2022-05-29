@@ -13,10 +13,10 @@ const onType = searchInput => event => {
     const suggestionsDiv = document.querySelector("#suggestions")
     clearElem(suggestionsDiv)
 
-    const suggestions = []
-    trie.findWordsWithPrefix(event.target.value)
-        .forEach(suggestion => suggestions.push(buildSuggestionLink(suggestion)))
-    suggestionsDiv.innerHTML = suggestions.join("")
+    suggestionsDiv.innerHTML = trie
+        .findWordsWithPrefix(event.target.value)
+        .map(suggestion => buildSuggestionLink(suggestion))
+        .join("")
 
     document.querySelectorAll(".suggestion")
         .forEach(a => a.addEventListener("click", e => {
@@ -64,7 +64,7 @@ ipcRenderer.on("findWordByEnglish::main::editpage", (event, word) => {
     document.querySelector("#id_word").value = id
     document.querySelector("#english").value = english
     document.querySelector("#russian").value = russian
-    document.querySelectorAll("label").forEach( l => l.classList.add("active"))
+    document.querySelectorAll("label").forEach(l => l.classList.add("active"))
     document.querySelector("#wrapper_word").classList.remove("hide")
 })
 
