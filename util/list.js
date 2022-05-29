@@ -10,7 +10,7 @@ class Node {
     }
 }
 
-class LinkedList {
+class Deque {
     _size = 0
     _head = new Node()
     _tail = new Node()
@@ -72,4 +72,4 @@ class LinkedList {
     }
 }
 
-module.exports = {LinkedList}
+module.exports = {Deque}

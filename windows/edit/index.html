@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../materialize.min.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div class="collection">
+    <a href="#!" class="collection-item">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="search" type="text" class="validate">
+                <label for="search">Search</label>
+            </div>
+        </div>
+    </a>
+    <div id="suggestions"></div>
+
+    <div class="row hide" id="wrapper_word">
+        <div class="col s12 center">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="" id="id_word" type="text" class="validate">
+                    <label class="active" for="id_word">id</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input value="" id="english" type="text" class="validate">
+                    <label class="active" id="label_english" for="english">english</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input value="" id="russian" type="text" class="validate">
+                    <label class="active" for="russian">russian</label>
+                </div>
+            </div>
+
+            <a id="update" class="waves-effect waves-light btn">update</a>
+        </div>
+    </div>
+
+</div>
+<script src="../materialize.min.js"></script>
+</body>
+</html>

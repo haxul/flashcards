@@ -22,6 +22,10 @@ const saveWordPersistant = async (word) => {
     db.conn.run("INSERT INTO word(english, russian, priority, last_updated) VALUES(?,?,?,?)", params)
 }
 
+const findByEnglish = word => new Promise((ok, reject) => {
+    db.conn.get("SELECT * FROM word WHERE  lower(english) = ?", [word], (err, row) => ok(row))
+})
+
 const fetchWordsPriorityOrder = fn => {
     db.conn.all("SELECT * FROM word ORDER BY random() LIMIT 50", (err, rows) => {
         if (err) throw new Error("cannot select words")
@@ -29,7 +33,13 @@ const fetchWordsPriorityOrder = fn => {
     })
 }
 
+const updateWord = ({russian, english, id}) => {
+    db.conn.run("UPDATE word SET english= ?, russian = ? WHERE id= ?", [english, russian, id])
+}
+
 module.exports = {
     saveWordPersistant,
-    fetchWordsPriorityOrder
+    fetchWordsPriorityOrder,
+    findByEnglish,
+    updateWord
 }

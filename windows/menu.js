@@ -1,5 +1,5 @@
 const buildMainMenu = (config) => {
-    const { addWordFrame, mainFrame, devMode } = config
+    const { addWordFrame, mainFrame, devMode, editFrame } = config
     const menuTemplate = [
         {
             label: "File",
@@ -8,9 +8,15 @@ const buildMainMenu = (config) => {
                     label: "Add word",
                     accelerator: "Ctrl+W",
                     click() { addWordFrame.initWindow({ top: mainFrame.window }) }
+                },
+                {
+                    label: "Edit word",
+                    accelerator: "Ctrl+E",
+                    click() { editFrame.initWindow({ top: mainFrame.window }) }
                 }
             ]
-        }
+        },
+
     ]
 
     if (devMode) {

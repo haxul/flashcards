@@ -1,8 +1,8 @@
 const {ipcRenderer} = require("electron")
-const {LinkedList} = require("../../util/list");
+const {Deque} = require("../../util/list");
 
 // words for lesson. Downloads earch time after start button click
-const wordsForLesson = new LinkedList()
+const wordsForLesson = new Deque()
 
 // handler on start button
 const onStartButton = () => {
@@ -51,6 +51,7 @@ const onLoaded = () => {
     // events handlers
     ipcRenderer.on("main::page::words::lesson", (event, words) => {
         wordsForLesson.addLastAll(words)
+        console.log(words)
         teachWord()
     })
 }
